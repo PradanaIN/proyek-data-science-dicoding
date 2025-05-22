@@ -4,12 +4,19 @@ import numpy as np
 import joblib
 import json
 
-# Load model dan scaler
-model = joblib.load('model/rf_model.pkl')
-scaler = joblib.load('model/scaler.pkl')
+@st.cache_resource
+def load_model():
+    model = joblib.load('model/rf_model.pkl')
+    scaler = joblib.load('model/scaler.pkl')
+    return model, scaler
 
-with open('model/columns.json', 'r') as f:
-    columns = json.load(f)
+@st.cache_data
+def load_columns():
+    with open('model/columns.json', 'r') as f:
+        return json.load(f)
+
+model, scaler = load_model()
+columns = load_columns()
 
 # Mapping label
 label_map = {0: 'Dropout', 1: 'Masih Kuliah (Enrolled)', 2: 'Lulus (Graduate)'}
