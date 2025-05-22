@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title="Prediksi Status Mahasiswa", layout="centered")
 import pandas as pd
 import numpy as np
 import joblib
@@ -41,8 +42,6 @@ def prediksi_status(input_data):
     return label_pred, proba_dict
 
 # ===== Streamlit UI =====
-
-st.set_page_config(page_title="Prediksi Status Mahasiswa", layout="centered")
 st.title("🎓 Prediksi Status Mahasiswa")
 st.markdown("Masukkan informasi akademik dan pribadi mahasiswa untuk memprediksi apakah mereka akan **Dropout**, **Masih Kuliah (Enrolled)**, atau **Lulus (Graduate)**.")
 
